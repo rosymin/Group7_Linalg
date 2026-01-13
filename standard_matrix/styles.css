@@ -1,0 +1,129 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f3f4f6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.dimensions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type="number"] {
+  width: 60px;
+  padding: 5px;
+}
+
+.matrix {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.vector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.vector label {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.vector input {
+  width: 60px;
+  padding: 6px;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #1e40af;
+}
+
+.compute {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#output {
+  margin-top: 25px;
+  font-family: monospace;
+  white-space: pre-wrap;
+  text-align: center;
+}
+
+.matrix-display {
+  display: inline-block;
+  margin: 15px 0;
+  padding: 10px;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+}
+
+.matrix-row {
+  display: flex;
+}
+
+.matrix-cell {
+  width: 50px;
+  text-align: center;
+  padding: 6px;
+}
+
+.step {
+  margin-top: 20px;
+}
+
+.step h3 {
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+#steps {
+  margin-top: 30px;
+  font-family: monospace;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.controls button {
+  background-color: #6b7280;
+}
+
+.controls button:hover {
+  background-color: #374151;
+}
+
