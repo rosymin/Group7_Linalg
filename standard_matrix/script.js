@@ -239,4 +239,8 @@ function parseNumber(value) {
   return Number(value);
 }
 
+document.getElementById("nInput").addEventListener("input", generateInputs);
+document.getElementById("mInput").addEventListener("input", generateInputs);
+
+
 generateInputs();
