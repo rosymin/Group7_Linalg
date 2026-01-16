@@ -242,6 +242,31 @@ function parseNumber(value) {
   return Number(value);
 }
 
+function setupSpinbarLimits() {
+  const inputs = [document.getElementById("nInput"), document.getElementById("mInput")];
+
+  inputs.forEach(input => {
+    input.addEventListener("keydown", (e) => {
+      const allowedKeys = ["1", "2", "3", "4", "5", "Backspace", "ArrowUp", "ArrowDown", "Tab"];
+      
+      if (!allowedKeys.includes(e.key)) {
+        e.preventDefault();
+      }
+    });
+
+    input.addEventListener("input", () => {
+      if (input.value > 5) input.value = 5;
+      if (input.value < 1 && input.value !== "") input.value = 1;
+      
+      if (input.value.length > 1) {
+        input.value = input.value.slice(0, 1);
+      }
+    });
+  });
+}
+
+setupSpinbarLimits();
+
 
 document.getElementById("nInput").addEventListener("input", generateInputs);
 document.getElementById("mInput").addEventListener("input", generateInputs);
