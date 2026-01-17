@@ -1,141 +1,196 @@
 body {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background: linear-gradient(135deg, #38124A 0%, #EE544A 100%);
-  min-height: 100vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background: linear-gradient(135deg, #38124A 0%, #EE544A 100%);
+    min-height: 100vh;
 }
 
 .container {
-  max-width: 900px;
-  margin: 30px auto;
-  background: rgba(255, 255, 255, 0.75);
-  border: 2px solid rgba(255, 255, 255, 0.4);
-  padding: 35px;
-  border-radius: 20px;
-  box-shadow: 0 8px 32px 0 rgba(56, 18, 74, 0.37);
-  backdrop-filter: blur(12px);
+    max-width: 900px;
+    margin: 30px auto;
+    background: rgba(255, 255, 255, 0.75);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(56, 18, 74, 0.37);
+    backdrop-filter: blur(12px);
 }
 
 h1, h2 {
-  text-align: center;
+    text-align: center;
 }
 
 .dimensions {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 input[type="number"] {
-  width: 60px;
-  padding: 5px;
+    width: 60px;
+    padding: 5px;
 }
 
 .matrix {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-bottom: 25px;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 25px;
+    align-items: center;
 }
 
 .vector {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(10px) scale(0.95);
+    pointer-events: none;
+    overflow: hidden;
+  
+    will-change: transform, opacity; 
+    
+    transition: 
+        opacity 0.2s ease-out,
+        transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        max-height 0.2s ease-in-out,
+        margin 0.2s ease;
+}
+
+.vector.show {
+    opacity: 1;
+    max-height: 400px;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+    margin: 0 10px;
 }
 
 .vector label {
-  font-weight: bold;
-  margin-bottom: 6px;
+    font-weight: bold;
+    margin-bottom: 6px;
 }
 
 .vector input {
-  width: 60px;
-  padding: 6px;
-  margin-bottom: 6px;
-  text-align: center;
+    width: 60px;
+    padding: 6px;
+    margin-bottom: 6px;
+    text-align: center;
+  
+    opacity: 0; 
+    max-height: 0;
+    transform: scaleY(0);
+    transition:
+        opacity 0.3s ease,
+        max-height 0.3s ease, 
+        transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: block;
+    overflow: hidden;
+}
+
+.vector input.visible {
+    opacity: 1;
+    max-height: 40px;
+    transform: scaleY(1);
+    margin-bottom: 6px;
 }
 
 button {
- padding: 10px 20px; 
-  background-color: #1a1a1a; 
-  color: rgb(249, 243, 243);
-  border: none;
-  cursor: pointer;
-  border-radius: 40px; 
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    padding: 10px 20px; 
+    background-color: #1a1a1a; 
+    color: rgb(249, 243, 243);
+    border: none;
+    cursor: pointer;
+    border-radius: 40px; 
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-  background-color: #38124A;
+    background-color: #38124A;
 }
 
 .compute {
-  display: block;
-  width: 65%;
-  margin: 20px auto 0;
-  align-items: center;
+    display: block;
+    width: 65%;
+    margin: 20px auto 0;
+    align-items: center;
 }
 
 #output {
-  margin-top: 25px;
-  font-family: monospace;
-  white-space: pre-wrap;
-  text-align: center;
+    margin-top: 25px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    text-align: center;
 }
 
 .matrix-display {
-  display: inline-block;
-  padding: 10px;
-  margin-bottom: 30px;
-  border-left: 3px solid black;
-  border-right: 3px solid black;
-  align-items: center;
+    display: inline-block;
+    padding: 10px;
+    margin-bottom: 30px;
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    align-items: center;
 }
 
 .matrix-row {
-  display: flex;
+    display: flex;
 }
 
 .matrix-cell {
-  width: 50px;
-  text-align: center;
-  padding: 6px;
+    width: 50px;
+    text-align: center;
+    padding: 6px;
+}
+
+.dimensions label sup, .vector label, .vector input, .matrix-cell, input[type="number"] {
+    font-family: "Cambria Math", "Times New Roman", Times, STIXGeneral, serif;
+    font-size: 1.05em;
+}
+
+/* Specifically target the R in dimension labels without affecting "dimension of" */
+.dimensions label {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Original font */
+}
+
+/* Ensure the superscript n and m still get the math font */
+.dimensions label sup {
+    font-family: "Cambria Math", "Times New Roman", Times, STIXGeneral, serif;
+    font-size: 0.8em;
 }
 
 .step {
-  margin-top: 10px;
-  margin-bottom: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .step h3 {
-  margin-bottom: 12px;
-  text-align: center;
+    margin-bottom: 12px;
+    text-align: center;
 }
 
 #steps {
-  margin-top: 30px;
-  font-family: monospace;
-  text-align: center;
+    margin-top: 30px;
+    font-family: monospace;
+    text-align: center;
 }
 
 .controls {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 15px;
 }
 
 .controls button {
-  background-color: #6b7280;
-  font-weight: bold;
+    background-color: #6b7280;
+    font-weight: bold;
 }
 
 .controls button:hover {
-  background-color: #EE544A;
+    background-color: #EE544A;
 }
 
