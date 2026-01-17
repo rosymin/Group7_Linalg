@@ -1,7 +1,7 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%); /* Blue Gradient */
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
     min-height: 100vh;
     margin: 0;
 }
@@ -10,19 +10,18 @@ body {
 .container {
     max-width: 900px;
     margin: 30px auto;
-    background: rgba(255, 255, 255, 0.95); /* Higher opacity for readability */
+    background: rgba(255, 255, 255, 0.80);
     border: 2px solid rgba(255, 255, 255, 0.4);
     padding: 35px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.5); /* Navy-toned shadow */
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.5); 
     backdrop-filter: blur(12px);
-    color: #0F172A; /* Midnight Navy Text */
-}
+    color: #0F172A; 
 
 
 h1, h2, h3 {
     text-align: center;
-    font-family: 'Montserrat', sans-serif; /* Geometric Heading Font */
+    font-family: 'Montserrat', sans-serif; 
     color: #0F172A;
 }
 
@@ -43,10 +42,10 @@ label {
 input[type="number"] {
     width: 60px;
     padding: 8px;
-    border: 2px solid #475569; /* Slate Blue Border (Accessible) */
-    background-color: #F8FAFC; /* Light Grey-Blue bg */
+    border: 2px solid #475569;
+    background-color: #F8FAFC;
     border-radius: 6px;
-    font-family: 'Roboto Slab', serif; /* Readable Math Font */
+    font-family: 'Roboto Slab', serif; 
     font-weight: 700;
     color: #0F172A;
     text-align: center;
@@ -54,7 +53,7 @@ input[type="number"] {
 
 
 input:focus {
-    outline: 3px solid #06B6D4; /* Bright Cyan Focus */
+    outline: 3px solid #06B6D4; 
     border-color: transparent;
 }
 
@@ -107,7 +106,7 @@ input:focus {
     padding: 6px;
     margin-bottom: 6px;
     text-align: center;
-    border: 2px solid #475569; /* Slate Blue Border */
+    border: 2px solid #475569; 
     background-color: #F8FAFC;
     border-radius: 6px;
   
@@ -132,11 +131,11 @@ input:focus {
 
 button {
     padding: 12px 24px; 
-    background-color: #1E40AF; /* Deep Navy */
+    background-color: #1E40AF; 
     color: #FFFFFF;
     border: none;
     cursor: pointer;
-    border-radius: 8px; /* Slightly more square for tech look */
+    border-radius: 8px; 
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     letter-spacing: 0.5px;
@@ -145,7 +144,7 @@ button {
 }
 
 button:hover {
-    background-color: #1e3a8a; /* Darker Navy */
+    background-color: #1e3a8a;
 }
 
 
@@ -160,7 +159,7 @@ button:focus {
     align-items: center;
 }
 
-/* --- 8. OUTPUT & STEPS --- */
+
 #output {
     margin-top: 25px;
     font-family: 'Roboto Slab', monospace;
@@ -172,7 +171,7 @@ button:focus {
     display: inline-block;
     padding: 10px;
     margin-bottom: 30px;
-    border-left: 3px solid #0F172A; /* Navy Brackets */
+    border-left: 3px solid #0F172A;
     border-right: 3px solid #0F172A;
     align-items: center;
     border-radius: 8px;
@@ -231,14 +230,14 @@ button:focus {
 .controls button {
     background-color: #FFFFFF;
     color: #1E40AF;
-    border: 2px solid #1E40AF; /* Navy Border */
+    border: 2px solid #1E40AF; 
 }
 
 .controls button:hover {
-    background-color: #EFF6FF; /* Light Blue Hover */
+    background-color: #EFF6FF; 
 }
 
-/* --- 10. FONT OVERRIDES (Cleaned up) --- */
+
 .dimensions label {
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
@@ -261,10 +260,9 @@ button:focus {
     font-style: italic;
 }
 
-/* Consolidated Font Family override to ensure accessibility */
 .vector label, .vector input, .matrix-cell, input[type="number"], .dimensions label sup, .math-text {
     font-family: 'Roboto Slab', serif; 
-    font-style: normal; /* Removed Italic for better readability */
+    font-style: normal; 
     font-size: 1.05em;
     color: #0F172A;
 }
