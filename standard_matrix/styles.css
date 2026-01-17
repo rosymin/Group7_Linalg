@@ -146,17 +146,11 @@ button:hover {
     padding: 6px;
 }
 
-.dimensions label sup, .vector label, .vector input, .matrix-cell, input[type="number"] {
-    font-family: "Cambria Math", "Times New Roman", Times, STIXGeneral, serif;
-    font-size: 1.05em;
-}
-
-/* Specifically target the R in dimension labels without affecting "dimension of" */
 .dimensions label {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; /* Original font */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    font-style: normal;
 }
 
-/* Ensure the superscript n and m still get the math font */
 .dimensions label sup {
     font-family: "Cambria Math", "Times New Roman", Times, STIXGeneral, serif;
     font-size: 0.8em;
@@ -194,3 +188,20 @@ button:hover {
     background-color: #EE544A;
 }
 
+.dimensions label sup, .vector label, .vector input, .matrix-cell, input[type="number"] {
+    font-family: "Cambria Math", "Times New Roman", Times, STIXGeneral, serif;
+    font-size: 1.05em;
+}
+
+.math-text {
+    font-style: normal; 
+}
+.math-text sup {
+    font-style: italic;
+}
+
+.vector label, .vector input, .matrix-cell, input[type="number"], .dimensions label sup, .math-text {
+    font-family: "Cambria Math", "Times New Roman", Times, serif;
+    font-style: italic; 
+    font-size: 1.05em;
+}
