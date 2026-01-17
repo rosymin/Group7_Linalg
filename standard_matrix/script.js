@@ -154,13 +154,13 @@ function computeStandardMatrix() {
     	const A = multiplyMatrices(C, B_inv);
 
     	output.innerHTML = `<h2>Standard Matrix A</h2>`;
-    	output.appendChild(renderMatrix(A));
+		output.appendChild(renderMatrix(A));
 
 		steps.innerHTML = "";
 		appendStep(steps, "Step 1: Basis Matrix B", B);
-    	appendStep(steps, "Step 2: Inverse B⁻¹", B_inv);
-    	appendStep(steps, "Step 3: Image Matrix C", C);
-    	appendStep(steps, "Step 4: Compute A = C · B⁻¹", A);
+		appendStep(steps, "Step 2: Inverse B⁻¹", B_inv);
+		appendStep(steps, "Step 3: Image Matrix C", C);
+		appendStep(steps, "Step 4: Compute A = C · B⁻¹", A);
 
   	} catch (err) {
     	output.textContent = "Error: " + err.message;
@@ -220,7 +220,7 @@ function renderMatrix(matrix) {
 
 function toggleSteps() {
   	const steps = document.getElementById("steps");
-  	steps.style.display = steps.style.display === "none" ? "block" : "none";
+  	steps.style.display = steps.style.display === "none" ? "flex" : "none";
 }
 
 function resetInputs() {
