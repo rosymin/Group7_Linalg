@@ -13,7 +13,7 @@ function generateInputs() {
     	return;
   	}
 
-  	//updates container for the two grids
+  	
   	updateVectorContainer("basisContainer", n, n, "b", "basis");
   	updateVectorContainer("imageContainer", n, m, "T(b", "image");
 }
@@ -177,28 +177,47 @@ function multiplyMatrices(A, B) {
 }
 
 function invertMatrix(matrix) {
-  	const n = matrix.length;
-  	let I = matrix.map((row, i) => row.map((_, j) => (i === j ? 1 : 0)));
-  	let M = matrix.map(row => row.slice());
+    const n = matrix.length;
+    let I = matrix.map((row, i) => row.map((_, j) => (i === j ? 1 : 0)));
+    let M = matrix.map(row => row.slice());
 
-  	for (let i = 0; i < n; i++) {
-    	if (M[i][i] === 0) throw new Error("Basis matrix is not invertible.");
-    	let pivot = M[i][i];
-    	for (let j = 0; j < n; j++) {
-      		M[i][j] /= pivot;
-      		I[i][j] /= pivot;
-    	}
-    	for (let k = 0; k < n; k++) {
-      		if (k !== i) {
-        		let factor = M[k][i];
-        		for (let j = 0; j < n; j++) {
-          			M[k][j] -= factor * M[i][j];
-          			I[k][j] -= factor * I[i][j];
-        		}
-      		}
-    	}
-  	}
-  	return I;
+    for (let i = 0; i < n; i++) {
+     
+        let maxRow = i;
+        for (let k = i + 1; k < n; k++) {
+            if (Math.abs(M[k][i]) > Math.abs(M[maxRow][i])) {
+                maxRow = k;
+            }
+        }
+        
+     
+        if (maxRow !== i) {
+            [M[i], M[maxRow]] = [M[maxRow], M[i]];
+            [I[i], I[maxRow]] = [I[maxRow], I[i]];
+        }
+        
+        
+        if (Math.abs(M[i][i]) < 1e-10) {
+            throw new Error("Basis matrix is not invertible.");
+        }
+        
+        // Gauss-Jordan elimination
+        let pivot = M[i][i];
+        for (let j = 0; j < n; j++) {
+            M[i][j] /= pivot;
+            I[i][j] /= pivot;
+        }
+        for (let k = 0; k < n; k++) {
+            if (k !== i) {
+                let factor = M[k][i];
+                for (let j = 0; j < n; j++) {
+                    M[k][j] -= factor * M[i][j];
+                    I[k][j] -= factor * I[i][j];
+                }
+            }
+        }
+    }
+    return I;
 }
 
 function renderMatrix(matrix) {
@@ -308,7 +327,6 @@ let debounceTimer;
 
 const debouncedGenerate = () => {
     clearTimeout(debounceTimer);
-    // Wait 50ms (blink of an eye) to ensure the user is done typing
     debounceTimer = setTimeout(generateInputs, 50);
 };
 
