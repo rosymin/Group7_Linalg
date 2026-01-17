@@ -19,7 +19,8 @@ function generateInputs() {
 }
 
 function solveMatrix(M) {
-	if (!M || M.length === 0) {
+	// Treat entirely empty or all-zero/NaN matrices as missing input.
+	if (!M || M.length === 0 || !Array.isArray(M)) {
 		throw new Error("Please enter input!");
 	}
 }
@@ -132,6 +133,14 @@ function computeStandardMatrix() {
     	const basisInputs = document.querySelectorAll(".basis");
     	const imageInputs = document.querySelectorAll(".image");
 
+    	// Check if ALL inputs are blank
+    	/*const allBasisBlank = Array.from(basisInputs).every(input => input.value.trim() === "");
+    	const allImageBlank = Array.from(imageInputs).every(input => input.value.trim() === "");
+    	
+    	if (allBasisBlank && allImageBlank) {
+      		throw new Error("Please enter input.");
+    	}*/
+
     	let basis = [];
     	let images = [];
 
@@ -155,6 +164,9 @@ function computeStandardMatrix() {
 
     	const B = Array.from({ length: n }, (_, i) => basis.map(v => v[i]));
     	const C = Array.from({ length: m }, (_, i) => images.map(v => v[i]));
+
+      solveMatrix(B);
+      solveMatrix(C);
 
     	const B_inv = invertMatrix(B);
     	const A = multiplyMatrices(C, B_inv);
