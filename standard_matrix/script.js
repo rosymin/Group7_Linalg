@@ -19,69 +19,74 @@ function generateInputs() {
 }
 
 function updateVectorContainer(containerId, vectorCount, coordsPerVector, labelPrefix, inputClass) {
-  	const container = document.getElementById(containerId);
-  	const originalVectors = container.querySelectorAll('.vector');
+    const container = document.getElementById(containerId);
 
-  	//vector removal
-  	if (originalVectors.length > vectorCount) {
-    	for (let i = originalVectors.length - 1; i >= vectorCount; i--) {
-      		const v = originalVectors[i];
-      		v.classList.remove('show');
-      		v.addEventListener('transitionend', () => v.remove(), { once: true });
-    	}
-  	}
+    // 1. Immediate Cleanup: Remove anything that is already flagged as "dying"
+    const dying = container.querySelectorAll('.vector[data-state="dying"]');
+    dying.forEach(v => v.remove());
 
-  	//new vector placement
-  	if (originalVectors.length < vectorCount) {
-    	for (let i = originalVectors.length; i < vectorCount; i++) {
-      		const vectorDiv = document.createElement("div");
-      		vectorDiv.className = "vector";
-		
-		    const label = document.createElement("label");
-		    label.textContent = labelPrefix.includes("T") ? `${labelPrefix}${i + 1})` : `${labelPrefix}${i + 1}`;
-		    vectorDiv.appendChild(label);
+    // 2. Identification: Get currently active vectors
+    let activeVectors = Array.from(container.querySelectorAll('.vector:not([data-state="dying"])'));
 
-      	for (let j = 0; j < coordsPerVector; j++) {
-        	vectorDiv.appendChild(createAnimatedInput(inputClass));
-      	}
+    // 3. Removal Logic
+    if (activeVectors.length > vectorCount) {
+        for (let i = activeVectors.length - 1; i >= vectorCount; i--) {
+            const v = activeVectors[i];
+            v.setAttribute('data-state', 'dying'); // Flag it so logic ignores it
+            v.classList.remove('show');
+            
+            // Instead of just an event listener, we use a timeout safety net
+            setTimeout(() => { if(v.parentElement) v.remove(); }, 400);
+        }
+    }
 
-      	container.appendChild(vectorDiv);
+    // 4. Addition Logic
+    if (activeVectors.length < vectorCount) {
+        for (let i = activeVectors.length; i < vectorCount; i++) {
+            const vectorDiv = document.createElement("div");
+            vectorDiv.className = "vector";
+            vectorDiv.setAttribute('data-state', 'active');
+            
+            const label = document.createElement("label");
+            label.textContent = labelPrefix.includes("T") ? `${labelPrefix}${i + 1})` : `${labelPrefix}${i + 1}`;
+            vectorDiv.appendChild(label);
 
-      	requestAnimationFrame(() => {
-        	requestAnimationFrame(() => {
-		  		vectorDiv.classList.add('show');
-			});
-      	});
-    	}
-  	}
+            for (let j = 0; j < coordsPerVector; j++) {
+                const newInput = createAnimatedInput(inputClass);
+                vectorDiv.appendChild(newInput);
+                requestAnimationFrame(() => requestAnimationFrame(() => newInput.classList.add('visible')));
+            }
 
-  	originalVectors.forEach((v, index) => {
-		if (index >= vectorCount) return;
-	
-    	const inputs = v.querySelectorAll('input');
-	
-    	if (inputs.length < coordsPerVector) {
-      		for (let k = inputs.length; k < coordsPerVector; k++) {
-				const newInput = createAnimatedInput(inputClass);
-        		v.appendChild(newInput);
+            container.appendChild(vectorDiv);
+            requestAnimationFrame(() => requestAnimationFrame(() => vectorDiv.classList.add('show')));
+        }
+    }
 
-				requestAnimationFrame(() => {
-					requestAnimationFrame(() => {
-						newInput.classList.add('visible');
-					});
-				});
-      		}
-    	} else if (inputs.length > coordsPerVector) {
-      		for (let k = inputs.length - 1; k >= coordsPerVector; k--) {
-				const inputToRemove = inputs[k];
-        		inputToRemove.classList.remove('visible');
-
-				inputToRemove.addEventListener('transitionend', () => {
-					inputToRemove.remove();
-	  			}, { once: true });
-			}
-    	}
-  	});
+    // 5. Row Synchronization: Force ALL non-dying vectors to match coordsPerVector
+    // We re-query to include the brand new vectors we just added above
+    const currentActive = container.querySelectorAll('.vector:not([data-state="dying"])');
+    
+    currentActive.forEach((v) => {
+        const inputs = v.querySelectorAll('input:not(.dying-input)');
+        
+        // Add Rows
+        if (inputs.length < coordsPerVector) {
+            for (let k = inputs.length; k < coordsPerVector; k++) {
+                const newInput = createAnimatedInput(inputClass);
+                v.appendChild(newInput);
+                requestAnimationFrame(() => requestAnimationFrame(() => newInput.classList.add('visible')));
+            }
+        } 
+        // Remove Rows
+        else if (inputs.length > coordsPerVector) {
+            for (let k = inputs.length - 1; k >= coordsPerVector; k--) {
+                const inputToRemove = inputs[k];
+                inputToRemove.classList.add('dying-input'); // Mark it
+                inputToRemove.classList.remove('visible');
+                setTimeout(() => { if(inputToRemove.parentElement) inputToRemove.remove(); }, 300);
+            }
+        }
+    });
 }
 
 function createAnimatedInput(className) {
