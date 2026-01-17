@@ -1,60 +1,63 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%); /* Blue Gradient */
     min-height: 100vh;
     margin: 0;
-    display: flex;
-    flex-direction: column;
 }
+
 
 .container {
     max-width: 900px;
     margin: 30px auto;
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.95); /* Higher opacity for readability */
     border: 2px solid rgba(255, 255, 255, 0.4);
     padding: 35px;
     border-radius: 20px;
-    box-shadow: 0 10px 30px 0 rgba(15, 23, 42, 0.5);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.5); /* Navy-toned shadow */
     backdrop-filter: blur(12px);
+    color: #0F172A; /* Midnight Navy Text */
 }
 
+
 h1, h2, h3 {
-    font-family: 'Montserrat', sans-serif;
     text-align: center;
+    font-family: 'Montserrat', sans-serif; /* Geometric Heading Font */
     color: #0F172A;
 }
 
 label {
-    font-weight: 600;
     color: #0F172A;
+    font-weight: 600;
 }
+
 
 .dimensions {
     display: flex;
-    gap: 15px;
+    gap: 10px;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
 }
 
 input[type="number"] {
-    font-family: 'Roboto Slab', serif;
-    font-weight: 700;
     width: 60px;
     padding: 8px;
-    border: 2px solid #475569; 
-    background-color: #F8FAFC;
+    border: 2px solid #475569; /* Slate Blue Border (Accessible) */
+    background-color: #F8FAFC; /* Light Grey-Blue bg */
     border-radius: 6px;
+    font-family: 'Roboto Slab', serif; /* Readable Math Font */
+    font-weight: 700;
     color: #0F172A;
     text-align: center;
-    font-size: 1.1rem;
 }
 
-input:focus, button:focus {
-    outline: 3px solid #0670d4; 
+
+input:focus {
+    outline: 3px solid #06B6D4; /* Bright Cyan Focus */
     border-color: transparent;
 }
+
 
 .matrix {
     display: flex;
@@ -63,6 +66,7 @@ input:focus, button:focus {
     margin-bottom: 25px;
     align-items: center;
 }
+
 
 .vector {
     display: flex;
@@ -95,6 +99,7 @@ input:focus, button:focus {
 .vector label {
     font-weight: bold;
     margin-bottom: 6px;
+    font-family: 'Roboto Slab', serif;
 }
 
 .vector input {
@@ -102,6 +107,9 @@ input:focus, button:focus {
     padding: 6px;
     margin-bottom: 6px;
     text-align: center;
+    border: 2px solid #475569; /* Slate Blue Border */
+    background-color: #F8FAFC;
+    border-radius: 6px;
   
     opacity: 0; 
     max-height: 0;
@@ -121,20 +129,28 @@ input:focus, button:focus {
     margin-bottom: 6px;
 }
 
+
 button {
-    padding: 10px 20px; 
-    background-color: #1a1a1a; 
-    color: rgb(249, 243, 243);
+    padding: 12px 24px; 
+    background-color: #1E40AF; /* Deep Navy */
+    color: #FFFFFF;
     border: none;
     cursor: pointer;
-    border-radius: 40px; 
-    font-weight: bold;
+    border-radius: 8px; /* Slightly more square for tech look */
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s;
 }
 
 button:hover {
-    background-color: #1e3a8a;
+    background-color: #1e3a8a; /* Darker Navy */
+}
+
+
+button:focus {
+    outline: 3px solid #06B6D4;
 }
 
 .compute {
@@ -144,9 +160,10 @@ button:hover {
     align-items: center;
 }
 
+/* --- 8. OUTPUT & STEPS --- */
 #output {
     margin-top: 25px;
-    font-family: monospace;
+    font-family: 'Roboto Slab', monospace;
     white-space: pre-wrap;
     text-align: center;
 }
@@ -155,9 +172,10 @@ button:hover {
     display: inline-block;
     padding: 10px;
     margin-bottom: 30px;
-    border-left: 3px solid black;
-    border-right: 3px solid black;
+    border-left: 3px solid #0F172A; /* Navy Brackets */
+    border-right: 3px solid #0F172A;
     align-items: center;
+    border-radius: 8px;
 }
 
 .matrix-row {
@@ -168,16 +186,8 @@ button:hover {
     width: 50px;
     text-align: center;
     padding: 6px;
-}
-
-.dimensions label {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
-    font-style: normal;
-}
-
-.dimensions label sup {
-    font-family: "Cambria Math", "Times New Roman", Times, STIXGeneral, serif;
-    font-size: 0.8em;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 600;
 }
 
 .step {
@@ -188,23 +198,28 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #FFFFFF;
+    padding: 15px;
+    border: 1px solid #475569;
+    border-radius: 8px;
 }
 
 .step h3 {
     margin-bottom: 12px;
     text-align: center;
+    color: #1E40AF;
 }
 
 #steps {
     margin-top: 30px;
-    font-family: monospace;
+    font-family: 'Roboto Slab', monospace;
     text-align: center;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
 }
+
 
 .controls {
     display: flex;
@@ -215,15 +230,27 @@ button:hover {
 
 .controls button {
     background-color: #FFFFFF;
-    font-weight: bold;
+    color: #1E40AF;
+    border: 2px solid #1E40AF; /* Navy Border */
 }
 
 .controls button:hover {
-    background-color: #EFF6FF;
+    background-color: #EFF6FF; /* Light Blue Hover */
+}
+
+/* --- 10. FONT OVERRIDES (Cleaned up) --- */
+.dimensions label {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+}
+
+.dimensions label sup {
+    font-family: 'Roboto Slab', serif;
+    font-size: 0.8em;
 }
 
 .dimensions label sup, .vector label, .vector input, .matrix-cell, input[type="number"] {
-    font-family: "Cambria Math", "Times New Roman", Times, STIXGeneral, serif;
+    font-family: 'Roboto Slab', serif;
     font-size: 1.05em;
 }
 
@@ -234,8 +261,10 @@ button:hover {
     font-style: italic;
 }
 
+/* Consolidated Font Family override to ensure accessibility */
 .vector label, .vector input, .matrix-cell, input[type="number"], .dimensions label sup, .math-text {
-    font-family: "Cambria Math", "Times New Roman", Times, serif;
-    font-style: italic; 
+    font-family: 'Roboto Slab', serif; 
+    font-style: normal; /* Removed Italic for better readability */
     font-size: 1.05em;
+    color: #0F172A;
 }
