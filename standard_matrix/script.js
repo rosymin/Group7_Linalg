@@ -18,6 +18,12 @@ function generateInputs() {
   	updateVectorContainer("imageContainer", n, m, "T(b", "image");
 }
 
+function solveMatrix(M) {
+	if (!M || M.length === 0) {
+		throw new Error("Please enter input!");
+	}
+}
+
 function updateVectorContainer(containerId, vectorCount, coordsPerVector, labelPrefix, inputClass) {
     const container = document.getElementById(containerId);
 
