@@ -1,7 +1,11 @@
+
 body {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background: linear-gradient(135deg, #38124A 0%, #EE544A 100%);
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%);
     min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .container {
@@ -11,27 +15,45 @@ body {
     border: 2px solid rgba(255, 255, 255, 0.4);
     padding: 35px;
     border-radius: 20px;
-    box-shadow: 0 8px 32px 0 rgba(56, 18, 74, 0.37);
+    box-shadow: 0 10px 30px 0 rgba(15, 23, 42, 0.5);
     backdrop-filter: blur(12px);
-	display: flex;
-	flex-direction: column;
 }
 
-h1, h2 {
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
+    color: #0F172A;
+}
+
+label {
+    font-weight: 600;
+    color: #0F172A;
 }
 
 .dimensions {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
 }
 
 input[type="number"] {
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
     width: 60px;
-    padding: 5px;
+    padding: 8px;
+    border: 2px solid #475569; 
+    background-color: #F8FAFC;
+    border-radius: 6px;
+    color: #0F172A;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+input:focus, button:focus {
+    outline: 3px solid #0670d4; 
+    border-color: transparent;
 }
 
 .matrix {
@@ -108,11 +130,11 @@ button {
     border-radius: 40px; 
     font-weight: bold;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 button:hover {
-    background-color: #38124A;
+    background-color: #1e3a8a;
 }
 
 .compute {
@@ -159,14 +181,13 @@ button:hover {
 }
 
 .step {
-    background: rgba(255, 255, 255, 0.5);
-    padding: 15px;
-    border-radius: 12px;
-    flex: 0 1 350px; 
+    margin-top: 10px;
+    margin-bottom: 20px;
+    flex: 1 1 300px;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .step h3 {
@@ -176,12 +197,13 @@ button:hover {
 
 #steps {
     margin-top: 30px;
-    font-family: "Cambria Math", "Times New Roman", serif;
+    font-family: monospace;
     text-align: center;
-    display: none;
+
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 25px;
+    gap: 20px;
 }
 
 .controls {
@@ -192,12 +214,12 @@ button:hover {
 }
 
 .controls button {
-    background-color: #6b7280;
+    background-color: #FFFFFF;
     font-weight: bold;
 }
 
 .controls button:hover {
-    background-color: #EE544A;
+    background-color: #EFF6FF;
 }
 
 .dimensions label sup, .vector label, .vector input, .matrix-cell, input[type="number"] {
@@ -216,35 +238,4 @@ button:hover {
     font-family: "Cambria Math", "Times New Roman", Times, serif;
     font-style: italic; 
     font-size: 1.05em;
-}
-
-.section-box {
-    background: rgba(255, 255, 255, 0.5); 
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 25px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-	
-	width: fit-content;
-	margin-left: auto;
-	margin-right: auto;
-	
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.section-box h1, .section-box h2 {
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-#output {
-	width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-#output:empty {
-    display: none;
 }
