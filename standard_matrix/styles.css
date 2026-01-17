@@ -159,6 +159,11 @@ button:hover {
 .step {
     margin-top: 10px;
     margin-bottom: 20px;
+    flex: 1 1 300px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .step h3 {
@@ -170,6 +175,11 @@ button:hover {
     margin-top: 30px;
     font-family: monospace;
     text-align: center;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
 .controls {
