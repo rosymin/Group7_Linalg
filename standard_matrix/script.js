@@ -20,7 +20,7 @@ function generateInputs() {
 
 function solveMatrix(M) {
 	// Treat entirely empty or all-zero/NaN matrices as missing input.
-	if (!M || M.length === 0 || !Array.isArray(M)) {
+	if (!M || M.length === 0) {
 		throw new Error("Please enter input!");
 	}
 }
